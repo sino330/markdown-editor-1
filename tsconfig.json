@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      //moduleの解決方法
+    "moduleResolution": "node",
+    //出力先のdirectorypath
+    "outDir": "./dist/",
+    //出力対象となるjavascriptのversion
+    "target": "ES2015",
+    "jsx":"react"
+  }
+}
