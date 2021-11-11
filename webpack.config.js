@@ -22,6 +22,11 @@ module.exports = {
     publicPath: "dist/",
   },
   devServer: {
+    static: {
+      //webpack dev serverのdefaultのdocument rootがpublicになっているので設定
+      //webpack5系ではstatic propertyで指定
+      directory: path.join(__dirname, "dist"),
+    },
     //fileを変更すると自動的にブラウザに反映させるフラグ
     hot: true,
     //起動時にブラウザで開くフラグ
