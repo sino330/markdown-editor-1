@@ -31,5 +31,6 @@ module.exports = {
     hot: true,
     //起動時にブラウザで開くフラグ
     open: true,
+    historyApiFallback: true,
   },
 };

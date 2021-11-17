@@ -3,7 +3,12 @@ import { render } from "react-dom";
 import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 //HashRouter as RouterはHashRouterという要素をRouterという名前で扱うという意味
-import {HashRouter as Router,Routes,Route,Navigate} from 'react-router-dom'
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  BrowserRouter,
+} from "react-router-dom";
 import { Editor } from "./pages/editor";
 
 const GlobalStyle = createGlobalStyle`
@@ -14,15 +19,13 @@ const GlobalStyle = createGlobalStyle`
 const Main = (
   <>
     <GlobalStyle />
-    <Router>
-      <Route path="/editor">
-        <Editor />
-      </Route>
-      <Route path="/history">
-        <h1>History</h1>
-      </Route>
-      <Navigate to="/editor" />
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Editor />} />
+        <Route path="/history" element={<h1>History</h1>}></Route>
+        <Route path="*" element={<Editor />} />
+      </Routes>
+    </BrowserRouter>
   </>
 );
 
