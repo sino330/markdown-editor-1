@@ -11,23 +11,31 @@ import {
 } from "react-router-dom";
 import { Editor } from "./pages/editor";
 import { History } from "./pages/history";
+import { useStateWithStorage } from "./hooks/use_state_with_strage";
 
 const GlobalStyle = createGlobalStyle`
     body * {
         box-sizing:border-box;
     }
 `;
-const Main = (
-  <>
-    <GlobalStyle />
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Editor />} />
-        <Route path="/history" element={<History />} />
-        <Route path="*" element={<Editor />} />
-      </Routes>
-    </BrowserRouter>
-  </>
-);
 
-render(Main, document.getElementById("app"));
+const StorageKey = "/editor:text";
+
+const Main: React.FC = () => {
+  const [text, setText] = useStateWithStorage("", StorageKey);
+
+  return (
+    <>
+      <GlobalStyle />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Editor text={text} setText={setText} />} />
+          <Route path="/history" element={<History setText={setText} />} />
+          <Route path="*" element={<Editor text={text} setText={setText} />} />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
+};
+
+render(<Main />, document.getElementById("app"));
